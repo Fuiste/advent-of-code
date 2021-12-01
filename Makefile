@@ -1,4 +1,4 @@
-NODE_VERSION=14.18.1
+NODE_VERSION=17.2.0
 
 # Colors for echos
 ccend=$(shell tput sgr0)
