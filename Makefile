@@ -7,7 +7,7 @@ ccso=$(shell tput smso)
 
 run: setup-node
 	@echo "$(ccso)--> Running all solutions $(ccend)"
-	bash -l -c 'nvm use && ./scripts/run-solutions.sh ${ALL_PUZZLES}'
+	bash -l -c 'nvm use && ./scripts/run-solutions.sh'
 	@echo "$(ccgreen)All done!$(ccend)"
 
 setup-node:
