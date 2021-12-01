@@ -1,3 +1,4 @@
+const before = new Date().getTime();
 const fs = require('fs');
 
 const data = fs.readFileSync('./input.txt', 'utf8');
@@ -13,4 +14,5 @@ if (depthStrings.length > 1) {
     }).length;
 }
 
-console.log(`The depth increased ${numDrops} times`);
+const after = new Date().getTime();
+console.log(`The depth increased ${numDrops} times (${after - before} ms)`);
