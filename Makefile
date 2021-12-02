@@ -1,6 +1,4 @@
 NODE_VERSION=17.2.0
-
-# Colors for echos
 ccend=$(shell tput sgr0)
 ccgreen=$(shell tput setaf 2)
 ccso=$(shell tput smso)
