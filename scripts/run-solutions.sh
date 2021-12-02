@@ -1,7 +1,7 @@
 #!/bin/bash
-for i in "01";
+for i in "01" "02";
 	do
-		echo "Advent day $i:"
+		echo "Day $i:"
 		cd ./$i;
 		echo "Solution 1:"
 		node solution-1.js
