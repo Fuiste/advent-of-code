@@ -7,22 +7,27 @@ const inputStrings = data.split('\n');
 let gammaRate = 0;
 let epsilonRate = 0;
 
+const existMoreOnes = (inputs, idx) => {
+    const [zeroes, ones] = inputStrings.reduce(
+        (tuple, curStr) => {
+            const [curZeroes, curOnes] = tuple;
+
+            return curStr[idx] === '0'
+                ? [curZeroes + 1, curOnes]
+                : [curZeroes, curOnes + 1];
+        },
+        [0, 0]
+    );
+
+    return ones > zeroes;
+};
+
 if (inputStrings.length > 0) {
     const sLen = inputStrings[0].length;
     let gammaStr = '';
     for (let i = 0; i < sLen; i++) {
-        let zeroes = 0;
-        let ones = 0;
-
-        for (let j = 0; j < inputStrings.length; j++) {
-            if (inputStrings[j][i] === '0') {
-                zeroes++;
-            } else {
-                ones++;
-            }
-        }
-
-        if (ones > zeroes) {
+        const moreOnes = existMoreOnes(inputStrings, i);
+        if (moreOnes) {
             gammaStr += '1';
         } else {
             gammaStr += '0';
@@ -30,12 +35,13 @@ if (inputStrings.length > 0) {
     }
 
     for (let i = 1; i < gammaStr.length + 1; i++) {
-        const addGamma = gammaStr[gammaStr.length - i] === '1';
-        const toAdd = Math.pow(2, i - 1);
-        if (addGamma) {
-            gammaRate += toAdd;
+        const shouldIncrementGamma = gammaStr[gammaStr.length - i] === '1';
+        const curPowerOf2 = Math.pow(2, i - 1);
+
+        if (shouldIncrementGamma) {
+            gammaRate += curPowerOf2;
         } else {
-            epsilonRate += toAdd;
+            epsilonRate += curPowerOf2;
         }
     }
 }

@@ -7,17 +7,7 @@ const inputStrings = data.split('\n');
 let oxRating = 0;
 let co2Rating = 0;
 
-const toDecimal = (boolStr) => {
-    let ans = 0;
-    for (let i = 1; i < boolStr.length + 1; i++) {
-        const toAdd = Math.pow(2, i - 1);
-        if (boolStr[boolStr.length - i] === '1') {
-            ans += toAdd;
-        }
-    }
-
-    return ans;
-};
+const toDecimal = (boolStr) => parseInt(boolStr, 2);
 
 const getDistribution = (arr, idx) => {
     let ones = 0;
