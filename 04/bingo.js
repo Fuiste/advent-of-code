@@ -27,18 +27,6 @@ const isColWinner = (marks) => {
     return false;
 };
 
-// const isDiagWinner = (marks) => {
-//     const arr = Array.from(Array(BOARD_SIZE));
-//     const firstDiagWinner = arr.every((_, idx) => {
-//         return marks[idx][idx] === MARK;
-//     });
-//     const secondDiagWinner = arr.every((_, idx) => {
-//         return marks[BOARD_SIZE - 1 - idx][idx] === MARK;
-//     });
-
-//     return firstDiagWinner || secondDiagWinner;
-// };
-
 const isRowWinner = (marks) => {
     for (let i = 0; i < BOARD_SIZE; i++) {
         if (marks[i].every((it) => it === MARK)) {
