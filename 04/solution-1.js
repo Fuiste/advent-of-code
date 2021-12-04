@@ -11,7 +11,7 @@ const data = getFileData();
 const boards = parseBoards(data, BOARD_SIZE);
 const draws = parseDraws(data);
 
-const getWinningBoardsWithDrawAndMarks = (iterations = -1) => {
+const getWinningBoardsWithDrawAndMarks = () => {
     const playableBoards = boards.map(playableBoard);
     let drawIdx = 0;
     let winners = [];
