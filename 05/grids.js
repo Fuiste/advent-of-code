@@ -16,23 +16,17 @@ const _markXY = (gridState, x, y) => {
 
 const _markXRange = (gridState, { y1, x1, x2 }) => {
     const xRange = range(x1, x2);
-    const y = y1;
 
     for (let i in xRange) {
-        const x = xRange[i];
-
-        _markXY(gridState, x, y);
+        _markXY(gridState, xRange[i], y1);
     }
 };
 
 const _markYRange = (gridState, { x1, y1, y2 }) => {
     const yRange = range(y1, y2);
-    const x = x1;
 
     for (let i in yRange) {
-        const y = yRange[i];
-
-        _markXY(gridState, x, y);
+        _markXY(gridState, x1, yRange[i]);
     }
 };
 
@@ -42,10 +36,7 @@ const _markDiagRange = (gridState, { x1, x2, y1, y2 }) => {
     const xRange = range(x1, x2);
 
     for (let i in xRange) {
-        const y = y1 + i * yDir;
-        const x = x1 + i * xDir;
-
-        _markXY(gridState, x, y);
+        _markXY(gridState, x1 + i * xDir, y1 + i * yDir);
     }
 };
 
