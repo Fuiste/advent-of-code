@@ -24,24 +24,6 @@ exports.getVectors = (data) => {
     return vectors;
 };
 
-exports.makeGridWithIntersections = (vectors) => {
-    const [maxX, maxY] = vectors.reduce(
-        ([maxX, maxY], { x1, x2, y1, y2 }) => {
-            const newX = Math.max(maxX, x1, x2);
-            const newY = Math.max(maxY, y1, y2);
-
-            return [newX, newY];
-        },
-        [0, 0]
-    );
-
-    const grid = [...Array(maxX + 1).keys()].map(() => {
-        return [...Array(maxY + 1).keys()].fill(0);
-    });
-
-    return { grid, intersections: 0 };
-};
-
 exports.range = (dim1, dim2) => {
     const max = Math.max(dim2, dim1);
     const min = Math.min(dim2, dim1);
