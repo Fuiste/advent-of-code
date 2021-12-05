@@ -12,13 +12,11 @@ exports.getFileData = (path) => {
 
 exports.getVectors = (data) => {
     const lines = data.split('\n');
-
     const toCoords = (coords) => {
         return coords.split(',').map((coord) => parseInt(coord, 10));
     };
     const vectors = lines.map((line) => {
-        const stringCoords = line.split(' -> ');
-        const [[x1, y1], [x2, y2]] = stringCoords.map(toCoords);
+        const [[x1, y1], [x2, y2]] = line.split(' -> ').map(toCoords);
 
         return { x1, y1, x2, y2 };
     });
@@ -27,15 +25,15 @@ exports.getVectors = (data) => {
 };
 
 exports.makeGrid = (vectors) => {
-    const maxX = vectors.reduce((max, { x1, x2 }) => {
-        const larger = x1 > x2 ? x1 : x2;
-        return larger > max ? larger : max;
-    }, 0);
+    const [maxX, maxY] = vectors.reduce(
+        ([maxX, maxY], { x1, x2, y1, y2 }) => {
+            const newX = Math.max(maxX, x1, x2);
+            const newY = Math.max(maxY, y1, y2);
 
-    const maxY = vectors.reduce((max, { y1, y2 }) => {
-        const larger = y1 > y2 ? y1 : y2;
-        return larger > max ? larger : max;
-    }, 0);
+            return [newX, newY];
+        },
+        [0, 0]
+    );
 
     return [...Array(maxX + 1).keys()].map(() => {
         return [...Array(maxY + 1).keys()].fill(0);
@@ -46,8 +44,8 @@ exports.range = (dim1, dim2) => {
     const max = Math.max(dim2, dim1);
     const min = Math.min(dim2, dim1);
     const diff = max - min;
-    const newRange = [...Array(diff + 1).keys()].map((i) => i + min);
-    return newRange;
+
+    return [...Array(diff + 1).keys()].map((i) => i + min);
 };
 
 exports.IS_X = IS_X;
