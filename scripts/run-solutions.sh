@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in "01" "02" "03" "04";
+for i in "01" "02" "03" "04" "05";
 	do
 		echo "Day $i:"
 		cd ./$i;
