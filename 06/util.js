@@ -13,11 +13,3 @@ exports.toInputMap = (inputs) => {
         return map;
     }, {});
 };
-
-exports.range = (dim1, dim2) => {
-    const max = Math.max(dim2, dim1);
-    const min = Math.min(dim2, dim1);
-    const diff = max - min;
-
-    return [...Array(diff + 1).keys()].map((i) => i + min);
-};
