@@ -1,6 +1,7 @@
 const before = new Date().getTime();
+const { getFileData } = require('../base-util');
 const { calculateIntersectionGrid } = require('./grids');
-const { getFileData, getVectors } = require('./util');
+const { getVectors } = require('./util');
 
 const data = getFileData('input.txt');
 const vectors = getVectors(data);

@@ -1,14 +1,6 @@
-const fs = require('fs');
-
 const IS_X = 'x';
 const IS_Y = 'y';
 const IS_DIAG = 'd';
-
-exports.getFileData = (path) => {
-    const data = fs.readFileSync(path, 'utf8');
-
-    return data;
-};
 
 exports.getVectors = (data) => {
     const lines = data.split('\n');
@@ -22,14 +14,6 @@ exports.getVectors = (data) => {
     });
 
     return vectors;
-};
-
-exports.range = (dim1, dim2) => {
-    const max = Math.max(dim2, dim1);
-    const min = Math.min(dim2, dim1);
-    const diff = max - min;
-
-    return [...Array(diff + 1).keys()].map((i) => i + min);
 };
 
 exports.IS_X = IS_X;

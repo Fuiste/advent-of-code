@@ -1,11 +1,3 @@
-const fs = require('fs');
-
-exports.getFileData = (path) => {
-    const data = fs.readFileSync(path, 'utf8');
-
-    return data;
-};
-
 exports.getInputs = (data) => {
     return data.split(',').map((it) => parseInt(it, 10));
 };

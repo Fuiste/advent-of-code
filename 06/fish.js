@@ -1,4 +1,4 @@
-const { range } = require('./util');
+const { range } = require('../base-util');
 
 const SPAWN_STATE = 8;
 const RESET_STATE = 6;

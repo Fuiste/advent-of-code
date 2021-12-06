@@ -1,6 +1,7 @@
 const before = new Date().getTime();
+const { getFileData } = require('../base-util');
 const { getNextDay, getTotal } = require('./fish');
-const { getInputs, getFileData, toInputMap, range } = require('./util');
+const { getInputs, toInputMap } = require('./util');
 
 const NUM_DAYS = 256;
 

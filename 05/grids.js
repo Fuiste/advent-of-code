@@ -1,4 +1,5 @@
-const { range, vectorType, IS_X, IS_Y, IS_DIAG } = require('./util');
+const { range } = require('../base-util');
+const { vectorType, IS_X, IS_Y, IS_DIAG } = require('./util');
 
 const MARKED = 'X';
 const INTERSECTED = 'I';
