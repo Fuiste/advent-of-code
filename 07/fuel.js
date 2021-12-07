@@ -5,9 +5,7 @@ const _linearCost = (positionA, positionB) => {
 const _increasingCost = (positionA, positionB) => {
     const dist = Math.abs(positionA - positionB);
 
-    return [...Array(dist).keys()].reduce((totalCost, idx) => {
-        return totalCost + (idx + 1);
-    }, 0);
+    return (dist * (dist + 1)) / 2;
 };
 
 const _fuelCostForPosition = (initialPositions, position, fuelFn) => {
