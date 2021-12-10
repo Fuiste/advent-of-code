@@ -3,7 +3,7 @@ const _linearCost = (positionA, positionB) => {
 };
 
 const _increasingCost = (positionA, positionB) => {
-    const dist = Math.abs(positionA - positionB);
+    const dist = _linearCost(positionA, positionB);
 
     return (dist * (dist + 1)) / 2;
 };

@@ -19,4 +19,4 @@ const [first, second, third] = getSortedBasinSizes(heightMaps);
 const ans = first * second * third;
 
 const after = new Date().getTime();
-console.log(`Product of 3 larges basins: ${ans} (${after - before} ms)`);
+console.log(`Product of 3 largest basins: ${ans} (${after - before} ms)`);
