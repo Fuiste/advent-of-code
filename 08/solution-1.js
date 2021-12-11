@@ -1,6 +1,6 @@
-const before = new Date().getTime();
 const { getFileData } = require('../base-util');
 const { getSignalsAndOutput } = require('./util');
+const before = new Date().getTime();
 
 const EASY_PATTERN_SIZES = { 1: 2, 4: 4, 7: 3, 8: 7 };
 

@@ -1,5 +1,5 @@
-const before = new Date().getTime();
 const fs = require('fs');
+const before = new Date().getTime();
 
 const data = fs.readFileSync('./input.txt', 'utf8');
 const depthStrings = data.split('\n');

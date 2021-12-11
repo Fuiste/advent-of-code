@@ -1,4 +1,3 @@
-const before = new Date().getTime();
 const {
     calculateScore,
     parseBoards,
@@ -6,6 +5,7 @@ const {
     getFileData,
 } = require('./util');
 const { playableBoard, MARK, BOARD_SIZE } = require('./bingo');
+const before = new Date().getTime();
 
 const data = getFileData();
 const boards = parseBoards(data, BOARD_SIZE);

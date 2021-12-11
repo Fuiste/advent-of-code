@@ -1,7 +1,7 @@
-const before = new Date().getTime();
 const { getFileData } = require('../base-util');
 const { findLocalMins, calculateBasinSize } = require('./maps');
 const { getHeightMap } = require('./util');
+const before = new Date().getTime();
 
 const getSortedBasinSizes = (depthMap) => {
     const basins = [];

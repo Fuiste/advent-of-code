@@ -1,7 +1,7 @@
-const before = new Date().getTime();
 const { getFileData } = require('../base-util');
 const { decodeSignal } = require('./decode');
 const { getSignalsAndOutput } = require('./util');
+const before = new Date().getTime();
 
 const data = getFileData('./input.txt');
 const [signalGroups, outputGroups] = getSignalsAndOutput(data);

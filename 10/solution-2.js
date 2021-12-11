@@ -1,6 +1,6 @@
-const before = new Date().getTime();
 const { getFileData } = require('../base-util');
 const { getCharArrays } = require('./util');
+const before = new Date().getTime();
 
 const OPENERS = new Set('{(<[');
 const MAPPER = {

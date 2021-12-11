@@ -1,8 +1,7 @@
-const before = new Date().getTime();
-
 const { getFileData } = require('../base-util');
 const { simulateSteps } = require('./flashes');
 const { getOctopusMap } = require('./util');
+const before = new Date().getTime();
 
 const data = getFileData('input.txt');
 const oMap = getOctopusMap(data);

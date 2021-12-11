@@ -1,6 +1,5 @@
-const before = new Date().getTime();
-
 const fs = require('fs');
+const before = new Date().getTime();
 
 const FORWARD = 'forward';
 const UP = 'up';
