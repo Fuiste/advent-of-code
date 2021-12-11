@@ -10,8 +10,8 @@ const _forMap = (octopusMap, callback) => {
     }
 };
 
-const _neighbors = (octopusMap, [x, y]) => {
-    return [
+const _neighbors = (octopusMap, [x, y]) =>
+    [
         [x - 1, y - 1],
         [x - 1, y],
         [x - 1, y + 1],
@@ -26,7 +26,6 @@ const _neighbors = (octopusMap, [x, y]) => {
 
         return acc;
     }, []);
-};
 
 const _flashAndIncrementNeighbors = (octopusMap, [x, y], hasFlashed) => {
     if (hasFlashed(x, y)) {
@@ -54,11 +53,10 @@ const _resetFlashes = (flashMap, octopusMap) => {
     }
 };
 
-const _increaseEnergy = (octopusMap) => {
+const _increaseEnergy = (octopusMap) =>
     _forMap(octopusMap, ([row, col]) => {
         octopusMap[row][col] += 1;
     });
-};
 
 const _runStep = (octopusMap) => {
     _increaseEnergy(octopusMap);
