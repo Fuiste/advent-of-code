@@ -1,5 +1,14 @@
 const FLASH_VALUE = 9;
+const RESET_VALUE = 0;
 const FLASHED = 'x';
+
+const _forMap = (octopusMap, callback) => {
+    for (let row in octopusMap) {
+        for (let col in octopusMap[row]) {
+            callback([row, col]);
+        }
+    }
+};
 
 const _neighbors = (octopusMap, [x, y]) => {
     return [
@@ -19,17 +28,11 @@ const _neighbors = (octopusMap, [x, y]) => {
     }, []);
 };
 
-const _flashAndIncrementNeighbors = (
-    octopusMap,
-    [x, y],
-    hasFlashed,
-    markFlash
-) => {
+const _flashAndIncrementNeighbors = (octopusMap, [x, y], hasFlashed) => {
     if (hasFlashed(x, y)) {
         return;
     }
 
-    markFlash(x, y);
     const neighbors = _neighbors(octopusMap, [x, y]);
 
     for (let [nx, ny] of neighbors) {
@@ -37,33 +40,24 @@ const _flashAndIncrementNeighbors = (
     }
 
     for (let [nx, ny] of neighbors) {
-        if (octopusMap[nx][ny] > FLASH_VALUE && !hasFlashed(nx, ny)) {
-            _flashAndIncrementNeighbors(
-                octopusMap,
-                [nx, ny],
-                hasFlashed,
-                markFlash
-            );
+        if (octopusMap[nx][ny] > FLASH_VALUE) {
+            _flashAndIncrementNeighbors(octopusMap, [nx, ny], hasFlashed);
         }
     }
 };
 
-const _resetFlashes = (octopusMap) => {
-    for (let row in octopusMap) {
-        for (let col in octopusMap[row]) {
-            if (octopusMap[row][col] > FLASH_VALUE) {
-                octopusMap[row][col] = 0;
-            }
+const _resetFlashes = (flashMap, octopusMap) => {
+    for (let [row, colIndices] of Object.entries(flashMap)) {
+        for (let col of Object.keys(colIndices)) {
+            octopusMap[row][col] = RESET_VALUE;
         }
     }
 };
 
 const _increaseEnergy = (octopusMap) => {
-    for (let row in octopusMap) {
-        for (let col in octopusMap[row]) {
-            octopusMap[row][col] += 1;
-        }
-    }
+    _forMap(octopusMap, ([row, col]) => {
+        octopusMap[row][col] += 1;
+    });
 };
 
 const _runStep = (octopusMap) => {
@@ -71,30 +65,27 @@ const _runStep = (octopusMap) => {
 
     let newFlashes = 0;
     const flashMap = {};
-    const markFlash = (x, y) => {
-        if (flashMap[x]) flashMap[x][y] = FLASHED;
+    const hasFlashed = (x, y) => {
+        if (flashMap[x] && flashMap[x][y] === FLASHED) return true;
+        else if (flashMap[x]) flashMap[x][y] = FLASHED;
         else flashMap[x] = { [y]: FLASHED };
 
         newFlashes++;
-    };
-    const hasFlashed = (x, y) => {
-        return flashMap[x] && flashMap[x][y] === FLASHED;
+        return false;
     };
 
     const flashing = [];
-    for (let row in octopusMap) {
-        for (let col in octopusMap[row]) {
-            if (octopusMap[row][col] > FLASH_VALUE) {
-                flashing.push([row, col].map((i) => parseInt(i, 10)));
-            }
+    _forMap(octopusMap, ([row, col]) => {
+        if (octopusMap[row][col] > FLASH_VALUE) {
+            flashing.push([row, col].map((i) => parseInt(i, 10)));
         }
-    }
+    });
 
     for (let coords of flashing) {
-        _flashAndIncrementNeighbors(octopusMap, coords, hasFlashed, markFlash);
+        _flashAndIncrementNeighbors(octopusMap, coords, hasFlashed);
     }
 
-    _resetFlashes(octopusMap);
+    _resetFlashes(flashMap, octopusMap);
     return newFlashes;
 };
 
@@ -112,7 +103,6 @@ exports.simulateSteps = (octopusMap, numSteps) => {
 
 exports.firstAllFlash = (octopusMap) => {
     const numOctopi = octopusMap.length * octopusMap[0].length;
-
     let step = 0;
     let isAllFlash = false;
 
@@ -120,7 +110,6 @@ exports.firstAllFlash = (octopusMap) => {
         const newFlashes = _runStep(octopusMap);
 
         if (newFlashes === numOctopi) isAllFlash = true;
-
         step++;
     }
 
