@@ -3,10 +3,12 @@ ccend=$(shell tput sgr0)
 ccgreen=$(shell tput setaf 2)
 ccso=$(shell tput smso)
 
-run: setup-node
+just-run:
 	@echo "$(ccso)--> Running all solutions $(ccend)"
 	bash -l -c 'nvm use && ./scripts/run-solutions.sh'
 	@echo "$(ccgreen)All done!$(ccend)"
+
+run: setup-node just-run
 
 setup-node:
 	@echo "$(ccso)--> Checking for nvm $(ccend)"
