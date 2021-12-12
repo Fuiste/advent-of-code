@@ -1,6 +1,5 @@
 const START = 'start';
 const END = 'end';
-const VISITED = 'x';
 
 const _isLargeCave = (caveId) => /^[A-Z]*$/.test(caveId);
 
