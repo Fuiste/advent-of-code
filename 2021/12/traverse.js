@@ -34,7 +34,7 @@ const _visit = ({
                     allowSingleRevisit,
                 })
             );
-        } else if (_canRevisit(caveId) && allowSingleRevisit) {
+        } else if (allowSingleRevisit && _canRevisit(caveId)) {
             return (
                 acc +
                 _visit({
