@@ -3,11 +3,11 @@ exports.makeConnectionGraph = (data) => {
     const connections = tunnels.reduce((acc, tunnel) => {
         const [from, to] = tunnel.split('-');
 
-        if (!acc[from]) acc[from] = new Set();
-        acc[from].add(to);
+        if (!acc[from]) acc[from] = [to];
+        else acc[from].push(to);
 
-        if (!acc[to]) acc[to] = new Set();
-        acc[to].add(from);
+        if (!acc[to]) acc[to] = [from];
+        else acc[to].push(from);
 
         return acc;
     }, {});

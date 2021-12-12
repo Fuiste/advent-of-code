@@ -23,11 +23,9 @@ const _visit = ({
         ? [...visited, curLocation]
         : visited;
 
-    if (curLocation === END) {
-        return 1;
-    }
+    if (curLocation === END) return 1;
 
-    return Array.from(connectionGraph[curLocation]).reduce((acc, caveId) => {
+    return connectionGraph[curLocation].reduce((acc, caveId) => {
         if (_canVisit(caveId, visited)) {
             return (
                 acc +
