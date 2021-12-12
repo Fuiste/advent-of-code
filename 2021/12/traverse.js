@@ -1,5 +1,6 @@
 const START = 'start';
 const END = 'end';
+const VISITED = 'x';
 
 const _isLargeCave = (caveId) => /^[A-Z]*$/.test(caveId);
 
@@ -10,7 +11,7 @@ const _canRevisit = (caveId) => {
 const _canVisit = (caveId, visited) => {
     const isLarge = _isLargeCave(caveId);
 
-    return (!isLarge && !visited.has(caveId)) || isLarge;
+    return (!isLarge && !visited.includes(caveId)) || isLarge;
 };
 
 const _visit = ({
@@ -19,8 +20,9 @@ const _visit = ({
     visited,
     allowSingleRevisit,
 }) => {
-    const visitedClone = new Set(visited);
-    visitedClone.add(curLocation);
+    const visitedClone = !_isLargeCave(curLocation)
+        ? [...visited, curLocation]
+        : visited;
 
     if (curLocation === END) {
         return 1;
@@ -54,8 +56,7 @@ const _visit = ({
 };
 
 exports.traverseCaves = (connectionGraph, allowSingleRevisit = false) => {
-    const visited = new Set();
-    visited.add(START);
+    const visited = [START];
 
     return _visit({
         connectionGraph,
