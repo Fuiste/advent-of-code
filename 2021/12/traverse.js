@@ -3,9 +3,7 @@ const END = 'end';
 
 const _isLargeCave = (caveId) => /^[A-Z]*$/.test(caveId);
 
-const _canRevisit = (caveId) => {
-    return !_isLargeCave(caveId) && caveId !== START;
-};
+const _canRevisit = (caveId) => !_isLargeCave(caveId) && caveId !== START;
 
 const _canVisit = (caveId, visited) => {
     const isLarge = _isLargeCave(caveId);
