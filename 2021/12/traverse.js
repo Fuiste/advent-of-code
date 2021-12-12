@@ -8,7 +8,7 @@ const _canRevisit = (caveId) => !_isLargeCave(caveId) && caveId !== START;
 const _canVisit = (caveId, visited) => {
     const isLarge = _isLargeCave(caveId);
 
-    return (!isLarge && !visited.includes(caveId)) || isLarge;
+    return isLarge || (!isLarge && !visited.includes(caveId));
 };
 
 const _visit = ({
@@ -17,11 +17,11 @@ const _visit = ({
     visited,
     allowSingleRevisit,
 }) => {
+    if (curLocation === END) return 1;
+
     const visitedClone = !_isLargeCave(curLocation)
         ? [...visited, curLocation]
         : visited;
-
-    if (curLocation === END) return 1;
 
     return connectionGraph[curLocation].reduce((acc, caveId) => {
         if (_canVisit(caveId, visited)) {
