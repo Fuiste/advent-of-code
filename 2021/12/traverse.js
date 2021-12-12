@@ -52,13 +52,10 @@ const _visit = ({
     }, 0);
 };
 
-exports.traverseCaves = (connectionGraph, allowSingleRevisit = false) => {
-    const visited = [START];
-
-    return _visit({
+exports.traverseCaves = (connectionGraph, allowSingleRevisit = false) =>
+    _visit({
         connectionGraph,
         curLocation: START,
-        visited,
+        visited: [START],
         allowSingleRevisit,
     });
-};
