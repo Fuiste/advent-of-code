@@ -7,7 +7,6 @@ const _canRevisit = (caveId) => !_isLargeCave(caveId) && caveId !== START;
 
 const _canVisit = (caveId, visited) => {
     const isLarge = _isLargeCave(caveId);
-
     return isLarge || (!isLarge && !visited.includes(caveId));
 };
 
