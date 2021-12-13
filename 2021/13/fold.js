@@ -9,12 +9,14 @@ const _makeFoldCoords = ([x, y], [fx, fy]) =>
 exports.doFold = (curMarks, [fx, fy]) => {
     const newMarks = new Set();
 
-    [...curMarks].map(stringToMark).forEach(([x, y]) => {
-        const newCoords = _shouldFold([x, y], [fx, fy])
-            ? _makeFoldCoords([x, y], [fx, fy])
-            : [x, y];
+    curMarks.forEach((markStr) => {
+        const [x, y] = stringToMark(markStr);
 
-        newMarks.add(markToString(newCoords));
+        if (_shouldFold([x, y], [fx, fy])) {
+            newMarks.add(markToString(_makeFoldCoords([x, y], [fx, fy])));
+        } else {
+            newMarks.add(markStr);
+        }
     });
 
     return newMarks;
